@@ -1,4 +1,4 @@
-///home/username/mame/mame nes -cart \'/home/username/mame/roms/Super Mario Bros (E).nes\' -skip_gameinfo
+//mame/mame nes -cart \'mame/roms/Super Mario Bros (E).nes\' -skip_gameinfo
 
 // main.js
 const { app, BrowserWindow, ipcMain } = require('electron/main');
@@ -7,12 +7,12 @@ const { spawn } = require('child_process');
 
 // Configuration for your programs
 const PROGRAMS = [
-    { id: 'smb1', name: 'Super Mario Bros', path: '/home/username/mame/mame nes -cart /home/username/mame/roms/smb1.nes -skip_gameinfo  ', icon: 'images/smb1.png' },
-    { id: 'contra', name: 'Contra', path: '/home/username/mame/mame nes -cart /home/username/mame/roms/contra.nes -skip_gameinfo  ', icon: 'images/smb1.png' },
-    { id: 'tetris', name: 'Tetris', path: '/home/username/mame/mame nes -cart /home/username/mame/roms/tetris.nes -skip_gameinfo  ', icon: 'images/smb1.png' },
-    { id: 'castlevania', name: 'Castlevania', path: '/home/username/mame/mame nes -cart /home/username/mame/roms/castlevania.nes -skip_gameinfo  ', icon: 'images/smb1.png' },
-    { id: 'pacman', name: 'PacMan', path: '/home/username/mame/mame nes -cart /home/username/mame/roms/pacman.nes -skip_gameinfo  ', icon: 'images/smb1.png' },
-    { id: 'dk', name: 'Donkey Kong', path: '/home/username/mame/mame nes -cart /home/username/mame/roms/dk.nes -skip_gameinfo  ', icon: 'images/smb1.png' }
+    { id: 'smb1', name: 'Super Mario Bros', path: 'mame/mame nes -cart mame/roms/smb1.nes -skip_gameinfo  ', icon: 'images/smb1.png' },
+    { id: 'contra', name: 'Contra', path: 'mame/mame nes -cart mame/roms/contra.nes -skip_gameinfo  ', icon: 'images/contra.png' },
+    { id: 'tetris', name: 'Tetris', path: 'mame/mame nes -cart mame/roms/tetris.nes -skip_gameinfo  ', icon: 'images/tetris.png' },
+    { id: 'castlevania', name: 'Castlevania', path: 'mame/mame nes -cart mame/roms/castlevania.nes -skip_gameinfo  ', icon: 'images/castlevania.png' },
+    { id: 'pacman', name: 'PacMan', path: 'mame/mame nes -cart mame/roms/pacman.nes -skip_gameinfo  ', icon: 'images/pacman.png' },
+    { id: 'dk', name: 'Donkey Kong', path: 'mame/mame nes -cart mame/roms/dk.nes -skip_gameinfo  ', icon: 'images/dk.png' }
 ];
 
 const STARTUP_DELAY = 2000;
