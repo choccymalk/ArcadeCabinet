@@ -19,8 +19,7 @@ const STARTUP_DELAY = 2000;
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        fullscreen: 1,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: false,
