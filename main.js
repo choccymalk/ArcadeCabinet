@@ -10,9 +10,11 @@ const PROGRAMS = [
     { id: 'smb1', name: 'Super Mario Bros', path: 'mame/mame nes -cart mame/roms/smb1.nes -skip_gameinfo  ', icon: 'images/smb1.png' },
     { id: 'contra', name: 'Contra', path: 'mame/mame nes -cart mame/roms/contra.nes -skip_gameinfo  ', icon: 'images/contra.png' },
     { id: 'tetris', name: 'Tetris', path: 'mame/mame nes -cart mame/roms/tetris.nes -skip_gameinfo  ', icon: 'images/tetris.png' },
-    { id: 'castlevania', name: 'Castlevania', path: 'mame/mame nes -cart mame/roms/castlevania.nes -skip_gameinfo  ', icon: 'images/castlevania.png' },
+    { id: 'galaga', name: 'Galaga', path: 'mame/mame nes -cart mame/roms/galaga.nes -skip_gameinfo  ', icon: 'images/galaga.png' },
     { id: 'pacman', name: 'PacMan', path: 'mame/mame nes -cart mame/roms/pacman.nes -skip_gameinfo  ', icon: 'images/pacman.png' },
-    { id: 'dk', name: 'Donkey Kong', path: 'mame/mame nes -cart mame/roms/dk.nes -skip_gameinfo  ', icon: 'images/dk.png' }
+    { id: 'dk', name: 'Donkey Kong', path: 'mame/mame nes -cart mame/roms/dk.nes -skip_gameinfo  ', icon: 'images/dk.png' },
+    { id: 'excitebike', name: 'Excitebike', path: 'mame/mame nes -cart mame/roms/excitebike.nes -skip_gameinfo  ', icon: 'images/excitebike.png' },
+    { id: 'mkss', name: 'Mario Kart: Super Circuit', path: 'mame/mame gba -cart mame/roms/mkss.gba -skip_gameinfo  ', icon: 'images/mkss.jpg' },
 ];
 
 const STARTUP_DELAY = 2000;
