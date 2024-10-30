@@ -242,14 +242,14 @@
             }
         }
 
-        searchInput.addEventListener('input', (e) => {
+        /*searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase();
             filteredPrograms = programs.filter(program => 
                 program.name.toLowerCase().includes(searchTerm)
             );
             selectedIndex = 0;
             updateGrid();
-        });
+        });*/
 
         document.addEventListener('keydown', (event) => {
             const gridColumns = Math.floor(document.querySelector('.grid-container').clientWidth / 
