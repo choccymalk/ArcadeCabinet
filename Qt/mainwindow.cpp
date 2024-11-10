@@ -4,6 +4,8 @@
 #include <string>
 #include <QDir>
 #include <QDebug>
+#include <QSysInfo>
+#include <QOperatingSystemVersion>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,16 +21,25 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::launchMame(std::string game) {
-    std::string gamePathPart1 = ".\\mame\\mame.exe nes -cart mame\\roms\\";
-    std::string gamePathPart2 = game;
-    std::string gamePathPart3 = ".nes -skip_gameinfo";
-    std::string fullGamePath = gamePathPart1+gamePathPart2+gamePathPart3;
-    system(fullGamePath.c_str());
+    #if (defined (_WIN32) || defined (_WIN64))
+        std::string gamePathPart1 = ".\\mame\\mame.exe nes -cart mame\\roms\\";
+        std::string gamePathPart2 = game;
+        std::string gamePathPart3 = ".nes -skip_gameinfo";
+        std::string fullGamePath = gamePathPart1+gamePathPart2+gamePathPart3;
+        system(fullGamePath.c_str());
+    #elif (defined (LINUX) || defined (__linux__))
+        std::string gamePathPart1 = "./mame/mame.exe nes -cart mame/roms/";
+        std::string gamePathPart2 = game;
+        std::string gamePathPart3 = ".nes -skip_gameinfo";
+        std::string fullGamePath = gamePathPart1+gamePathPart2+gamePathPart3;
+        system(fullGamePath.c_str());
+    #endif
 }
 
 void MainWindow::initializeUI()
 {
     // Set initial focus
+    ui->label_2->setPixmap(QPixmap("images/SHHS70001200px (3).png"));
     focusNextButton(0);
     colorButton(true, 1);
     currentButton = ui->pushButton;
@@ -73,39 +84,6 @@ QString MainWindow::getImagePath(const QString& game)
     return path;
 }
 
-/*void MainWindow::keyPressEvent(QKeyEvent *event)
-{
-    printf("key pressed");
-    qDebug() << "key pressed";
-    int currentIndex = getCurrentButtonIndex();
-    int nextIndex = -1;
-
-    switch (event->key()) {
-    case Qt::Key_Up:
-        if (currentIndex > 0) {
-            nextIndex = currentIndex - 1;
-            qDebug() << "Moving up to index:" << nextIndex;  // Debug output
-        }
-        break;
-
-    case Qt::Key_Down:
-        if (currentIndex < 6) {
-            nextIndex = currentIndex + 1;
-            qDebug() << "Moving down to index:" << nextIndex;  // Debug output
-        }
-        break;
-
-    case Qt::Key_Return:
-    case Qt::Key_Enter:
-        if (currentButton)
-            currentButton->click();
-        break;
-    }
-
-    if (nextIndex >= 0 && nextIndex < 7) {
-        focusNextButton(nextIndex);
-    }
-}*/
 void MainWindow::colorButton(bool enable, int index){
     if(enable){
         if (index == 1) ui->pushButton->setStyleSheet("background-color: #531516");
