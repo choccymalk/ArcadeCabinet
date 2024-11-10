@@ -7,14 +7,14 @@ const { spawn } = require('child_process');
 
 // Configuration for your programs
 const PROGRAMS = [
-    { id: 'smb1', name: 'Super Mario Bros', path: 'mame/mame nes -cart mame/roms/smb1.nes -skip_gameinfo  ', icon: 'images/smb1.png' },
-    { id: 'contra', name: 'Contra', path: 'mame/mame nes -cart mame/roms/contra.nes -skip_gameinfo  ', icon: 'images/contra.png' },
-    { id: 'tetris', name: 'Tetris', path: 'mame/mame nes -cart mame/roms/tetris.nes -skip_gameinfo  ', icon: 'images/tetris.png' },
-    { id: 'galaga', name: 'Galaga', path: 'mame/mame nes -cart mame/roms/galaga.nes -skip_gameinfo  ', icon: 'images/galaga.png' },
-    { id: 'pacman', name: 'PacMan', path: 'mame/mame nes -cart mame/roms/pacman.nes -skip_gameinfo  ', icon: 'images/pacman.png' },
-    { id: 'dk', name: 'Donkey Kong', path: 'mame/mame nes -cart mame/roms/dk.nes -skip_gameinfo  ', icon: 'images/dk.png' },
-    { id: 'excitebike', name: 'Excitebike', path: 'mame/mame nes -cart mame/roms/excitebike.nes -skip_gameinfo  ', icon: 'images/excitebike.png' },
-    { id: 'mkss', name: 'Mario Kart: Super Circuit', path: 'mame/mame gba -cart mame/roms/mkss.gba -skip_gameinfo  ', icon: 'images/mkss.jpg' },
+    { id: 'smb1', name: 'Super Mario Bros', path: 'nes -cart mame/roms/smb1.nes -skip_gameinfo  ', icon: 'images/smb1.png' },
+    { id: 'contra', name: 'Contra', path: 'nes -cart mame/roms/contra.nes -skip_gameinfo  ', icon: 'images/contra.png' },
+    { id: 'tetris', name: 'Tetris', path: 'nes -cart mame/roms/tetris.nes -skip_gameinfo  ', icon: 'images/tetris.png' },
+    { id: 'galaga', name: 'Galaga', path: 'nes -cart mame/roms/galaga.nes -skip_gameinfo  ', icon: 'images/galaga.png' },
+    { id: 'pacman', name: 'PacMan', path: 'nes -cart mame/roms/pacman.nes -skip_gameinfo  ', icon: 'images/pacman.png' },
+    { id: 'dk', name: 'Donkey Kong', path: 'nes -cart mame/roms/dk.nes -skip_gameinfo  ', icon: 'images/dk.png' },
+    { id: 'excitebike', name: 'Excitebike', path: 'nes -cart mame/roms/excitebike.nes -skip_gameinfo  ', icon: 'images/excitebike.png' },
+    { id: 'mkss', name: 'Mario Bros', path: 'nes -cart \"mame/roms/Mario Bros. (U) (e-Reader) [!].nes\" -skip_gameinfo  ', icon: 'images/Mario Bros. (USA).png' },
 ];
 
 const STARTUP_DELAY = 2000;
@@ -63,11 +63,12 @@ ipcMain.handle('launch-program', async (_, programId) => {
         if (!program) {
             throw new Error('Program not found');
         }
-
-        await launchProgram(program.path);
-        // On Windows, uncomment to switch focus:
-        // const { exec } = require('child_process');
-        // exec(`powershell -command "(New-Object -ComObject WScript.Shell).AppActivate('${program.name}')"`)
+        
+        if (process.platform == "win32"){
+            await launchProgram("mame\\mame.exe " + program.path );//+ " -video opengl");
+        } else {
+            await launchProgram("mame/mame" + program.path);
+        }
         
         app.quit();
         return { success: true };
